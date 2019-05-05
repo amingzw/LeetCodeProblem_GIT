@@ -21,29 +21,46 @@ namespace LeetCodeProblem.Array
     {
         public IList<IList<int>> ThreeSum(int[] nums)
         {
-            IList<int> pInt = nums.Where((c) => c > 0).ToList();
-            IList<int> zInt = nums.Where((c) => c == 0).ToList();
-            IList<int> nInt = nums.Where((c) => c < 0).ToList();
-
-            
-
-            return null;
-        }
-
-        public static int test()
-        {
-            string[] strList = new string[] { "nesa.id", "rfca.name", "nesa.tt", "trea.tt", "rfca.yy" };
-            var tt = strList.GroupBy(x => x.Split('.')[0], y => y.Split('.')[1])
-                .ToDictionary(group => group.Key, group =>group.ToList());
-            foreach (var t in tt.Keys)
+            List<int> numList = nums.ToList();
+            IList<IList<int>> resList = new List<IList<int>>();
+            numList.Sort();
+            for (int i = 0; i < numList.Count - 2; ++i)
             {
-                string key = t;
-                foreach (var s in tt[t])
+                if (numList[i] > 0) break;
+                if (i > 0 && numList[i] == numList[i - 1])
+                    continue;
+                int left = i + 1;
+                int right = numList.Count - 1;
+
+                while (left < right)
                 {
-                    string d = s;
+                    int sum = numList[i] + numList[left] + numList[right];
+                    if (sum == 0)
+                    {
+                        List<int> val = new List<int> { numList[i], numList[left], numList[right] };
+                        resList.Add(val);
+                        while (left < right && numList[left] == numList[left + 1])
+                        {
+                            left++;
+                        }
+                        while (left < right && numList[right] == numList[right - 1])
+                        {
+                            right--;
+                        }
+                        left++;
+                        right--;
+                    }
+                    else if (sum > 0)
+                    {
+                        right--;
+                    }
+                    else
+                        left++;
                 }
+
             }
-            return 0;
+
+            return resList;
         }
     }
 }
