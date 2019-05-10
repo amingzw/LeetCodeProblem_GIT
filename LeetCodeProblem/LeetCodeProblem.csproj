@@ -51,6 +51,7 @@
     <Compile Include="Array\509_Fibonacci Number.cs" />
     <Compile Include="Array\922_Sort Array By Parity II.cs" />
     <Compile Include="Array\977_Squares of a Sorted Array.cs" />
+    <Compile Include="Array\985_Sum of Even Numbers After Queries.cs" />
     <Compile Include="Array\999_Available Captures for Rook.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
